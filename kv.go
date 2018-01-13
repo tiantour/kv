@@ -5,6 +5,7 @@ import (
 	"runtime"
 
 	"github.com/dgraph-io/badger"
+	"github.com/tiantour/conf"
 )
 
 var (
@@ -18,9 +19,13 @@ type pool struct {
 }
 
 func init() {
+	c := conf.NewConf().KV
+	if c.Path == "" {
+		c.Path = "/tmp/badger"
+	}
 	opts := badger.DefaultOptions
-	opts.Dir = "/tmp/badger"
-	opts.ValueDir = "/tmp/badger"
+	opts.Dir = c.Path
+	opts.ValueDir = c.Path
 	db, err := badger.Open(opts)
 	if err != nil {
 		log.Fatal(err)
