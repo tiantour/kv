@@ -23,9 +23,7 @@ func main() {
 		"key2": []byte("value2"),
 		"key3": []byte("value3"),
 	}
-	// if 0, not set ttl
-	ttl := 0 * time.Second
-	err := kv.NewWrite().List(args, ttl)
+	err := kv.NewWrite().List(args)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -44,9 +42,7 @@ import (
 )
 
 func main() {
-	// if 0, not set ttl
-	ttl := 0 * time.Second
-	err := kv.NewWrite().Item("key1", []byte("value1"), ttl)
+	err := kv.NewWrite().Item("key1", []byte("value1"))
 	if err != nil {
 		log.Fatal(err)
 	}
