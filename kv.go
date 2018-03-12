@@ -30,6 +30,7 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	cap := runtime.NumCPU()
 	conn = make(chan int, cap)
 	for i := 0; i < cap; i++ {
